@@ -1,5 +1,5 @@
-Home Assistant addon for OpenVPN
-================================
+Home Assistant OpenVPN addon
+===========================
 
-This addon runs OpenVPN from provided configuration.
+This addon runs OpenVPN using the provided configuration.
 Configuration files can be uploaded and downloaded via the addon web page.
