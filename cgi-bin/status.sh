@@ -1,5 +1,4 @@
 #!/bin/sh
-# !/usr/bin/with-contenv bashio
 #
 # Check if the OpenVPN configuration files are available
 

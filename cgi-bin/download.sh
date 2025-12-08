@@ -1,5 +1,4 @@
 #!/bin/sh
-# !/usr/bin/with-contenv bashio
 #
 # Display (download) a configuration file
 
@@ -20,6 +19,7 @@ fi
 
 # Header for the response
 echo Content-type: application/octet-stream
+echo
 
 # File contents
 cat $FILE
