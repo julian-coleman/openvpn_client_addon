@@ -1,5 +1,5 @@
 name: "OpenVPN Client"
-version: "0.4.0"
+version: "0.4.1"
 slug: "openvpn_client"
 description: "OpenVPN Client"
 init: false

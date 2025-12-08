@@ -23,6 +23,14 @@ function reqListener() {
     document.getElementById("text-status").style.backgroundColor = "#ff8888";
     document.getElementById("text-download").style.display = "none";
   }
+  // .pid file
+  if (status[2].endsWith("=0")) {
+    document.getElementById("process-status").innerHTML = "Not running";
+    document.getElementById("process-status").style.backgroundColor = "#ff8888";
+  } else {
+    document.getElementById("process-status").innerHTML = "Running";
+    document.getElementById("process-status").style.backgroundColor = "#88ff88";
+  }
 }
 
 function downloadHover (element) {
