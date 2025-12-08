@@ -7,19 +7,46 @@ OVPN=$CONFIG_DIR/client.ovpn
 TEXT=$CONFIG_DIR/client.text
 TMP=$CONFIG_DIR/tmpfile
 
-if [ "$QUERY_STRING" = "ovpn=" ]; then
-    FILE=$OVPN
-elif [ "$QUERY_STRING" = "text=" ]; then
-    FILE=$TEXT
-fi
+# HTML end <message> <status>
+html_end () {
+    echo '  <div class="addon-status' $2'">'
+    echo $1
+    echo '  </div>'
+    echo '  <div></div>'
+    echo '  <a href="..">'
+    echo '    <div class="addon-button" id="upload-done" onmouseover="buttonHover('"'upload-done'"')" onmouseout="buttonOut('"'upload-done'"')">'
+    echo 'OK'
+    echo '    </div>'
+    echo '  </a>'
+    echo '</div>' # addon-content
+    echo '<script src="../index.js"></script>'
+    echo '</body></html>'
+    exit
+}
 
-echo Content-type: text/plain
+# HTML Start
+echo Content-type: text/html
 echo
+echo '<!DOCTYPE html>'
+echo '<html><body>'
+echo '<link rel="stylesheet" type="text/css" media="screen" href="../addon.css">'
+echo '<div class="addon-content">'
+
+case "$QUERY_STRING" in
+    ovpn*)
+        FILE=$OVPN
+    ;;
+    text*)
+        FILE=$TEXT
+    ;;
+    *)
+        html_end 'Upload failed: unknown configuration' addon-status-bad
+    ;;
+esac
 
 echo -n > $TMP
 if [ $? -ne 0 ]; then
-    echo Upload failed: create error
-    exit
+    html_end 'Upload failed: create error' addon-status-bad
 fi
 
 # Find the separator from $CONTENT_TYPE
@@ -37,8 +64,7 @@ do
     # Check the file name
     case "$line" in
         Content-Disposition*filename=\"\"*)
-            echo Upload failed: missing file name
-            exit
+            html_end 'Upload failed: missing file name' addon-status-bad
         ;;
     esac
 
@@ -48,8 +74,7 @@ do
             found=$((count + 1)) # Skip following empty line
         ;;
         Content-Type:*)
-            echo Upload failed: wrong file type
-            exit
+            html_end 'Upload failed: wrong file type' addon-status-bad
     esac
 
     # The last 2 lines are blank then separator, so skip them
@@ -70,18 +95,16 @@ do
     fi
 done
 if [ $? -ne 0 ]; then
-    echo Upload failed: write error
-    exit
+    html_end 'Upload failed: write error' addon-status-bad
 fi
 
 # Rename to the real file
 chmod 0644 $TMP
 mv $TMP $FILE
 if [ $? -ne 0 ]; then
-    echo Upload failed: rename error
-    exit
+    html_end 'Upload failed: rename error' addon-status-bad
 fi
 
-echo Upload succeeded
-cd $CONFIG 
-ls -l $FILE
+#cd $CONFIG 
+#ls -l $FILE
+html_end 'Upload succeeded' addon-status-good
