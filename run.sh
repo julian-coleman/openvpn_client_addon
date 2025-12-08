@@ -9,7 +9,7 @@ TUN=/dev/net/tun
 
 BIN=/usr/sbin/openvpn
 PID=/openvpn.pid
-PARAMS="--writepid $PID --config $OVPN"
+DEF_PARAMS="--writepid $PID --config $OVPN"
 
 date
 
@@ -28,26 +28,36 @@ fi
 
 # Are the configuration files available?
 echo Looking for configuration
+found=0
 while true; do
     if [ -r $OVPN ]; then
         echo "Found configuration file(s):"
+        found=1
         ls -l $OVPN
+        PARAMS="$DEF_PARAMS"
         if [ -r $TEXT ]; then
             ls -l $TEXT
             PARAMS="$PARAMS --auth-user-pass $TEXT"
         fi
     fi
-    break
+    if [ $found -eq 1 ]; then
+        break
+    fi
     echo Waiting for configuration file
-    sleep 300
+    sleep 60
     date
 done
 
 # Run OpenVPN
 while true; do
     echo Starting OpenVPN
+    PARAMS="$DEF_PARAMS"
+    if [ -r $TEXT ]; then
+        PARAMS="$PARAMS --auth-user-pass $TEXT"
+    fi
     echo $BIN $PARAMS
     $BIN $PARAMS || true
     rm -f $PID
+    echo Waiting for restart
     sleep 60
 done
