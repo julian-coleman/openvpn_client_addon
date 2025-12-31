@@ -68,13 +68,13 @@ do
         ;;
     esac
 
-    # We want text/plain or application/octet-stream
+    # We want application/x-openvpn-profile, text/plain or application/octet-stream
     case "$line" in
-        Content-Type:*text/plain*|Content-Type:*application/octet-stream*)
+        Content-Type:*application/x-openvpn-profile*|Content-Type:*text/plain*|Content-Type:*application/octet-stream*)
             found=$((count + 1)) # Skip following empty line
         ;;
         Content-Type:*)
-            html_end 'Upload failed: wrong file type' addon-status-bad
+            html_end "Upload failed: wrong file type: $line" addon-status-bad
     esac
 
     # The last 2 lines are blank then separator, so skip them
