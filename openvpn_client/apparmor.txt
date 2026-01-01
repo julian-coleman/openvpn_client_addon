@@ -27,6 +27,7 @@ profile openvpn_client flags=(attach_disconnected,mediate_deleted) {
   # Access to options.json and other files within your addon
   /data/** rw,
   /config/** rw,
+  /openvpn.pid rw,
 
   # From run.sh
   /usr/bin/date ix,
@@ -56,6 +57,7 @@ profile openvpn_client flags=(attach_disconnected,mediate_deleted) {
     /addon.css r,
     /cgi-bin/ r,
     /cgi-bin/* ixr,
+    /var/tmp/** rw,
 
     # Access required for service functionality
     /usr/sbin/lighttpd rix,
