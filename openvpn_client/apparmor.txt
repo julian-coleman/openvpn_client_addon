@@ -1,0 +1,99 @@
+#include <tunables/global>
+
+profile openvpn_client flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # Capabilities
+  file,
+  signal (send) set=(kill,term,int,hup,cont),
+
+  # S6-Overlay
+  /init ix,
+  /bin/** ix,
+  /usr/bin/** ix,
+  /run/{s6,s6-rc*,service}/** ix,
+  /package/** ix,
+  /command/** ix,
+  /etc/services.d/** rwix,
+  /etc/cont-init.d/** rwix,
+  /etc/cont-finish.d/** rwix,
+  /run/{,**} rwk,
+  /dev/tty rw,
+
+  # Shell
+  /usr/lib/bashio/** ix,
+  /tmp/** rwk,
+
+  # Access to options.json and other files within your addon
+  /data/** rw,
+  /config/** rw,
+
+  # From run.sh
+  /usr/bin/date ix,
+  /usr/bin/rm ix,
+
+  # Start new profiles for lighttpd and openvpn
+  /usr/sbin/lighttpd cx -> lighttpd,
+  /usr/sbin/openvpn cx -> openvpn,
+
+  profile lighttpd flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+
+    # Receive signals from S6-Overlay
+    signal (receive) peer=*_openvpn_client,
+
+    capability net_bind_service,
+    capability setgid,
+    capability setuid,
+
+    # Access to mapped volumes specified in config.yaml
+    /config/** rw,
+
+    # Access to configuration and web pages
+    /lighttpd.conf r,
+    /index.html r,
+    /index.js r,
+    /addon.css r,
+    /cgi-bin/ r,
+    /cgi-bin/* ixr,
+
+    # Access required for service functionality
+    /usr/sbin/lighttpd rix,
+    /usr/lib/lighttpd/*.so r,
+    /bin/busybox rix,
+    /lib/ld-musl-x86_64.so.* r,
+    /bin/sh rix,
+    /dev/null rw,
+    /dev/tty rw,
+
+  }
+
+  profile openvpn flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+
+    # Receive signals from S6-Overlay
+    signal (receive) peer=*_openvpn_client,
+
+    capability net_admin,
+    capability setuid,
+    capability setgid,
+
+    # Access to mapped volumes specified in config.yaml
+    /config/** r,
+
+    # Access to configuration
+    /etc/ssl/openssl.cnf r,
+    /etc/hosts r,
+    /etc/resolv.conf r,
+    /etc/group r,
+    /etc/passwd r,
+
+    # Access required for service functionality
+    /usr/sbin/openvpn rix,
+    /openvpn.pid rw,
+    /dev/net/tun rw,
+    /sbin/ip ix,
+    /dev/tty rw,
+    /proc/** r,
+  }
+}

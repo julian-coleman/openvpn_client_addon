@@ -1,5 +1,5 @@
 name: "OpenVPN Client"
-version: "0.6.3"
+version: "0.7.0"
 slug: "openvpn_client"
 description: "An OpenVPN Client for your Home Assistant"
 init: false
@@ -8,6 +8,7 @@ arch:
   - amd64
 startup: services
 ingress: true
+apparmor: true
 map:
   - addon_config:rw
 host_network: true
