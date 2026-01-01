@@ -26,12 +26,12 @@ div.addon-status {
 }
 
 div.addon-status-good {
-  background-color: #db4437;
+  background-color: #43a047;
   color: #ffffff;
 }
 
 div.addon-status-bad {
-  background-color: #43a047;
+  background-color: #db4437;
   color: #ffffff;
 }
 
