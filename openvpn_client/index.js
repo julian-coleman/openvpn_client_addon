@@ -24,12 +24,12 @@ function reqListener() {
     document.getElementById("text-download").style.display = "none";
   }
   // .pid file
-  if (status[2].endsWith("=0")) {
-    document.getElementById("process-status").innerHTML = "Not running";
-    document.getElementById("process-status").style.backgroundColor = "#ff8888";
-  } else {
+  if (status[2].startsWith("pid=")) {
     document.getElementById("process-status").innerHTML = "Running";
     document.getElementById("process-status").style.backgroundColor = "#88ff88";
+  } else {
+    document.getElementById("process-status").innerHTML = "Not running";
+    document.getElementById("process-status").style.backgroundColor = "#ff8888";
   }
 }
 

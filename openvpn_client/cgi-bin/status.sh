@@ -28,5 +28,5 @@ fi
 if [ -r $PID ]; then
     echo pid=`cat $PID`
 else
-    echo pid=0
+    echo 0
 fi

@@ -1,5 +1,5 @@
 name: "OpenVPN Client"
-version: "0.7.0"
+version: "0.7.1"
 slug: "openvpn_client"
 description: "An OpenVPN Client for your Home Assistant"
 init: false
