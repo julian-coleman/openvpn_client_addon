@@ -5,57 +5,57 @@
 
 <link rel="stylesheet" type="text/css" media="screen" href="addon.css">
 
-<div class="addon-content">
+<div class="addon-content" id="index-cs">
 
   <div class="addon-bold">
-  Configuration file:
+  Konfigurační soubor:
   </div>
   <div class="addon-status" id="ovpn-status">
-  Unknown
+  Neznámy
   </div>
   <div class="addon-upload" id="ovpn-upload" style="display: inline;">
-    <form action="./cgi-bin/upload.sh?ovpn=1&lang=en" enctype="multipart/form-data" method="post">
+    <form action="./cgi-bin/upload.sh?ovpn=1&lang=cs" enctype="multipart/form-data" method="post">
       <input type="file" name="client.ovpn">
-      <input type="submit" value="Upload">
+      <input type="submit" value="Nahrát">
     </form>
   </div>
-  <a href="./cgi-bin/download.sh?ovpn=1&lang=en" download="client.ovpn">
+  <a href="./cgi-bin/download.sh?ovpn=1&lang=cs" download="client.ovpn">
     <div class="addon-button" id="ovpn-download" onmouseover="buttonHover('ovpn-download')" onmouseout="buttonOut('ovpn-download')" style="display: none;">
-      Download
+      Stahnout
     </div>
   </a>
 
   <div class="addon-bold">
-  Username/Password file:
+  Soubor s uživatelským jménem/heslem:
   </div>
   <div class="addon-status" id="text-status">
-  Unknown
+  Neznámy
   </div>
   <div class="addon-upload" id="text-upload" style="display: inline;">
-    <form action="./cgi-bin/upload.sh?text=1&lang=en" enctype="multipart/form-data" method="post">
+    <form action="./cgi-bin/upload.sh?text=1&lang=cs" enctype="multipart/form-data" method="post">
       <input type="file" name="client.text">
-      <input type="submit" value="Upload">
+      <input type="submit" value="Nahrát">
     </form>
   </div>
-  <a href="./cgi-bin/download.sh?text=1&lang=en" download="client.text">
+  <a href="./cgi-bin/download.sh?text=1&lang=cs" download="client.text">
     <div class="addon-button" id="text-download" onmouseover="buttonHover('text-download')" onmouseout="buttonOut('text-download')" style="display: none;">
-      Download
+      Stahnout
     </div>
   </a>
 
   <div class="addon-bold">
-  OpenVPN process:
+  Proces OpenVPN:
   </div>
   <div class="addon-status" id="process-status">
-  Unknown
+  Neznámy
   </div>
 
   <div class="addon-bold">
-  Reload Status:
+  Znovu načíst stav:
   </div>
   <a href="javascript:location.reload()">
     <div class="addon-button" id="page-reload" onmouseover="buttonHover('page-reload')" onmouseout="buttonOut('page-reload')">
-      Reload
+      Znovu načíst
     </div>
   </a>
 

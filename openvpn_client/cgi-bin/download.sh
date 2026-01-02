@@ -8,10 +8,15 @@ OVPN=$CONFIG_DIR/client.ovpn
 TEXT=$CONFIG_DIR/client.text
 
 # The file to display
-if [ "$QUERY_STRING" = "ovpn=" ]; then
+if [ "$QUERY_STRING" = "" ]; then
+    exit
+fi
+if [ "${QUERY_STRING%%\&*}" = "ovpn=1" ]; then
     FILE=$OVPN
-elif [ "$QUERY_STRING" = "text=" ]; then
+elif [ "${QUERY_STRING%%\&*}" = "text=1" ]; then
     FILE=$TEXT
+else
+    exit
 fi
 if [ ! -r $FILE ]; then
     exit
