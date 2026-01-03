@@ -14,48 +14,48 @@ Pro instalaci z GitHub navštivte:
 
 a klikněte na tlačitko **Add Add-on Repository to My HA**.  Držte se pokyny a dostanete se do dialogového okna Repozitáře v obchodě s doplňky:
 
-[![github home_assistant_add-ons page](images/github.png)]
+![github home_assistant_add-ons page](images/github.png)
 
 Pro instalaci z Obchodu s doplňky v Home Assistant, navštivte **Nastavení**, **Doplnky**, **Obchod s doplnky** a pak z menu v pravém horním rohu **Repozitáře**.  Vyplňte URL adresu repozitáře:
 
 - https://github.com/julian-coleman/home_assistant_add-ons
 
-[![add-on repositories dialog](images/cs-1.png)]
+![add-on repositories dialog](images/cs-1.png)
 
 Pro obě vyberte **+ Přidat** a pak **Zavřít**.  Znovu načtěte stránku a doplněk OpenVPN Client bude k dispozici:
 
-[![add-on store](images/cs-2.png)]
+![add-on store](images/cs-2.png)
 
 Vyberte **OpenVPN Client** a pak **Nainstalovat**:
 
-[![add-on install](images/cs-3.png)]
+![add-on install](images/cs-3.png)
 
 Můžete změnit jazyk na kartě **Nastavení**:
 
-[![add-on language](images/cs-4.png)]
+![add-on language](images/cs-4.png)
 
 Jestli se zmení jazyk po spuštení doplňku, použijte tlačítko **Znovu načíst** v stránce **Otevřit webové rozhraní**.
 
 Po instalaci doplňku **Spustit** doplňek:
 
-[![add-on start](images/cs-5.png)]
+![add-on start](images/cs-5.png)
 
 a **Otevřít webové rozhraní**:
 
-[![add-on web](images/cs-6.png)]
+![add-on web](images/cs-6.png)
 
 Konfigurace doplňku
 -------------------
 
 Webové rozhraní zobrazuje stav souborů OpenVPN a proces OpenVPN. Dva soubory jsou hlavní konfigurační soubor (.ovpn) a soubor s uživatelským jménem/heslem (.text):
 
-[![add-on config with no uploads](images/cs-7.png)]
+![add-on config with no uploads](images/cs-7.png)
 
 Pro každý soubor použijte **Browse** k výběru souboru v lokálním souborovém systému a pak jeho **Nahrát**:
 
 Doplněk každou minutu kontroluje konfigurační soubory a po jejich nalezení spustí OpenVPN.  Po nahrání souborů by se OpenVPN měl spustit do minuty.  Aktuální stav lze zkontrolovat pomocí tlačítka **Znovu načíst**:
 
-[![add-on config with OpenVPN running](images/cs-8.png)]
+![add-on config with OpenVPN running](images/cs-8.png)
 
 Pokud se konfigurační soubory změní, doplněk OpenVPN automaticky nerestartuje. **Restartovat** z hlavní stránky doplňku, abyste doplněk restartovali s novou konfigurací.
 
@@ -64,4 +64,4 @@ Logy doplňku
 
 Doplněk zaznamenává svůj aktuální stav do logu. Když jsou konfigurační soubory k dispozici a OpenVPN je spuštěn, OpenVPN zaznamenává stav do logu. Do logu budou také zapsány všechny chyby OpenVPN:
 
-[![add-on log](images/cs-9.png)]
+![add-on log](images/cs-9.png)
