@@ -7,3 +7,7 @@ OpenVPN Client
 --------------
 
 This add-on runs OpenVPN using configuration files which are uploaded via the add-on web page.
+
+[Installation Instructions](docs/openvpn_client/en.md)
+
+[Pokyny k instalaci](docs/openvpn_client/cs.md)
